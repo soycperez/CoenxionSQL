@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.sql.SQLData;
+
 public class Connection {
 
     ConexionSQLITE conn;
@@ -23,10 +25,16 @@ public class Connection {
             while (c.moveToNext()){
                 aux = "1";
             }
-
         }catch (Exception ex){
             System.out.println("Error: " + ex.getMessage());
         }
         return aux;
+    }
+
+    public void crearUsuario(String id, String nom, String pass, String tipo){
+        String sql = "insert into usuario values ('"+id+"','"+nom+"','"+pass+"','"+tipo+"')";
+        SQLiteDatabase sqLiteDatabase = conn.getWritableDatabase();
+        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
     }
 }
