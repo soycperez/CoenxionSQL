@@ -39,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         String result = conn.findUser(user.getText().toString(), pass.getText().toString());
         System.out.println(result);
         if(result.equals("1")){
-            Intent i = new Intent(MainActivity.this, MainActivity2.class);
+            user.setText("");
+            pass.setText("");
+            Intent i = new Intent(MainActivity.this, MenuActivity.class);
             startActivity(i);
         }else{
             Toast.makeText(this, "El usuario no es valido", Toast.LENGTH_SHORT).show();

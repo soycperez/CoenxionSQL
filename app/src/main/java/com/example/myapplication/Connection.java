@@ -37,4 +37,26 @@ public class Connection {
         sqLiteDatabase.execSQL(sql);
         sqLiteDatabase.close();
     }
+
+    public String findUserId(String id){
+        String sql = "select * from usuario where id='"+id+"'";
+        String aux = "0";
+        SQLiteDatabase sqLiteDatabase = conn.getWritableDatabase();
+        try {
+            Cursor c = sqLiteDatabase.rawQuery(sql, null);
+            while (c.moveToNext()){
+                aux="1";
+            }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return aux;
+    }
+
+    public void eliminarUser(String id){
+        String sql = "delete from usuario where id='"+id+"'";
+        SQLiteDatabase sqLiteDatabase = conn.getWritableDatabase();
+        sqLiteDatabase.execSQL(sql);
+        sqLiteDatabase.close();
+    }
 }
